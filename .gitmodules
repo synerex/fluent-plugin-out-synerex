@@ -1,0 +1,3 @@
+[submodule "proto_fluentd"]
+	path = proto_fluentd
+	url = https://github.com/synerex/proto_fluentd.git

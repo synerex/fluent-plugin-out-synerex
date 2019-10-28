@@ -1,0 +1,22 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    anyflake (0.0.1)
+    google-protobuf (3.9.2)
+    googleapis-common-protos-types (1.0.4)
+      google-protobuf (~> 3.0)
+    grpc (1.24.0)
+      google-protobuf (~> 3.8)
+      googleapis-common-protos-types (~> 1.0)
+    grpc-tools (1.24.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  anyflake
+  grpc
+  grpc-tools
+
+BUNDLED WITH
+   2.0.2
