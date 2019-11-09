@@ -1,7 +1,7 @@
 
 require 'grpc'
-require 'synerex_services_pb'
-require 'nodeapi_services_pb'
+require_relative 'synerex_services_pb'
+require_relative 'nodeapi_services_pb'
 require 'optparse'
 require 'logger'
 require 'anyflake'

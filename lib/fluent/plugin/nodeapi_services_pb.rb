@@ -2,7 +2,7 @@
 # Source: nodeapi.proto for package 'nodeapi'
 
 require 'grpc'
-require 'nodeapi_pb'
+require_relative 'nodeapi_pb'
 
 module Nodeapi
   module Node

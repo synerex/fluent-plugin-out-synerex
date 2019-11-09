@@ -2,7 +2,7 @@
 # Source: synerex.proto for package 'api'
 
 require 'grpc'
-require 'synerex_pb'
+require_relative 'synerex_pb'
 
 module Api
   module Synerex

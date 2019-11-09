@@ -15,8 +15,8 @@
 
 require 'grpc'
 require 'fluent/plugin/output'
-require 'provider-util'
-require 'fluentd_pb'
+require_relative 'provider-util'
+require_relative 'fluentd_pb'
 require 'google/protobuf/well_known_types'
 
 
