@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.name    = "fluent-plugin-synerex"
   spec.version = "0.1.0"
   spec.authors = ["Nobuo Kawaguchi"]
-  spec.email   = ["kawaguti@nagoya-u.jp"]
+  spec.email   = ["rubygems@synerex.net"]
 
   spec.summary       = %q{Synerex output plugin for fluentd}
   spec.description   = %q{Synerex output plugin for fluentd}
