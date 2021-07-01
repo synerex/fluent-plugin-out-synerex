@@ -2,7 +2,7 @@
 # Source: synerex.proto for package 'api'
 
 require 'grpc'
-require_relative 'synerex_pb'
+require 'synerex_pb'
 
 module Api
   module Synerex
@@ -23,11 +23,16 @@ module Api
       rpc :Confirm, Target, Response
       rpc :SubscribeDemand, Channel, stream(Demand)
       rpc :SubscribeSupply, Channel, stream(Supply)
-      rpc :SubscribeMbus, Mbus, stream(MbusMsg)
-      rpc :SendMsg, MbusMsg, Response
+      rpc :CreateMbus, MbusOpt, Mbus
       rpc :CloseMbus, Mbus, Response
+      rpc :SubscribeMbus, Mbus, stream(MbusMsg)
+      rpc :SendMbusMsg, MbusMsg, Response
+      rpc :GetMbusState, Mbus, MbusState
       rpc :SubscribeGateway, GatewayInfo, stream(GatewayMsg)
       rpc :ForwardToGateway, GatewayMsg, Response
+      rpc :CloseDemandChannel, Channel, Response
+      rpc :CloseSupplyChannel, Channel, Response
+      rpc :CloseAllChannels, ProviderID, Response
     end
 
     Stub = Service.rpc_stub_class

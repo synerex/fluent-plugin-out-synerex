@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("nodeapi.proto", :syntax => :proto3) do
     add_message "nodeapi.NodeInfo" do
@@ -14,6 +15,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :cluster_id, :int32, 6
       optional :area_id, :string, 7
       repeated :channelTypes, :uint32, 8
+      optional :gw_info, :string, 9
+      optional :bin_version, :string, 10
+      optional :count, :int32, 11
+      optional :last_alive_time, :message, 12, "google.protobuf.Timestamp"
+      optional :keepalive_arg, :string, 13
     end
     add_message "nodeapi.NodeID" do
       optional :node_id, :int32, 1
@@ -21,12 +27,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :server_info, :string, 3
       optional :keepalive_duration, :int32, 4
     end
+    add_message "nodeapi.ServerStatus" do
+      optional :cpu, :double, 1
+      optional :memory, :double, 2
+      optional :msg_count, :uint64, 3
+    end
     add_message "nodeapi.NodeUpdate" do
       optional :node_id, :int32, 1
       optional :secret, :fixed64, 2
       optional :update_count, :int32, 3
       optional :node_status, :int32, 4
       optional :node_arg, :string, 5
+      optional :status, :message, 6, "nodeapi.ServerStatus"
     end
     add_message "nodeapi.Response" do
       optional :ok, :bool, 1
@@ -42,6 +54,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       value :NONE, 0
       value :RECONNECT, 1
       value :SERVER_CHANGE, 2
+      value :PROVIDER_DISCONNECT, 3
     end
   end
 end
@@ -49,6 +62,7 @@ end
 module Nodeapi
   NodeInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.NodeInfo").msgclass
   NodeID = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.NodeID").msgclass
+  ServerStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.ServerStatus").msgclass
   NodeUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.NodeUpdate").msgclass
   Response = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.Response").msgclass
   NodeType = Google::Protobuf::DescriptorPool.generated_pool.lookup("nodeapi.NodeType").enummodule

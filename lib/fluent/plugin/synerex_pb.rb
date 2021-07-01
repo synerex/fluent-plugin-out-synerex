@@ -68,6 +68,26 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
       optional :msg_type, :uint32, 5
       optional :msg_info, :string, 6
       optional :arg_json, :string, 7
+      optional :cdata, :message, 8, "api.Content"
+    end
+    add_message "api.MbusOpt" do
+      optional :mbus_type, :enum, 1, "api.MbusOpt.MbusType"
+      repeated :subscribers, :fixed64, 2
+    end
+    add_enum "api.MbusOpt.MbusType" do
+      value :PUBLIC, 0
+      value :PRIVATE, 1
+    end
+    add_message "api.MbusState" do
+      optional :mbus_id, :fixed64, 1
+      optional :status, :enum, 2, "api.MbusState.MbusStatus"
+      repeated :subscribers, :fixed64, 3
+    end
+    add_enum "api.MbusState.MbusStatus" do
+      value :INTIALIZED, 0
+      value :SUBSCRIBERS, 1
+      value :CLOSED, 2
+      value :INVALID, 3
     end
     add_message "api.GatewayInfo" do
       optional :client_id, :fixed64, 1
@@ -84,6 +104,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
         optional :mbus, :message, 6, "api.Mbus"
         optional :mbus_msg, :message, 7, "api.MbusMsg"
       end
+    end
+    add_message "api.ProviderID" do
+      optional :client_id, :fixed64, 1
+      optional :arg_json, :string, 3
     end
     add_enum "api.GatewayType" do
       value :BIDIRECTIONAL, 0
@@ -110,8 +134,13 @@ module Api
   Channel = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.Channel").msgclass
   Mbus = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.Mbus").msgclass
   MbusMsg = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MbusMsg").msgclass
+  MbusOpt = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MbusOpt").msgclass
+  MbusOpt::MbusType = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MbusOpt.MbusType").enummodule
+  MbusState = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MbusState").msgclass
+  MbusState::MbusStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MbusState.MbusStatus").enummodule
   GatewayInfo = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.GatewayInfo").msgclass
   GatewayMsg = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.GatewayMsg").msgclass
+  ProviderID = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.ProviderID").msgclass
   GatewayType = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.GatewayType").enummodule
   MsgType = Google::Protobuf::DescriptorPool.generated_pool.lookup("api.MsgType").enummodule
 end
